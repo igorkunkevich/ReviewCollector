@@ -2,10 +2,10 @@ import scrapy
 from yandex.items import ReviewsItem
 
 
-class SegodnyaSpider(scrapy.Spider):
-    name = 'segodnya'
+class SosediSpider(scrapy.Spider):
+    name = 'sosedi'
     allowed_domains = ['yandex.by']
-    start_urls = ['https://yandex.by/maps/org/segodnya/229371280912/reviews/']
+    start_urls = ['http://yandex.by/maps/org/sosedi/1042256439/reviews/']
 
     def parse(self, response, **kwargs):
         count_reviews = len(response.xpath("//div[@class='business-review-view__info']").extract())
