@@ -25,6 +25,7 @@ bs4 = "*"
 maya = "*"
 sentry-sdk = "*"
 dnspython = "*"
+pytest-black = "*"
 
 [requires]
 python_version = "3.9"

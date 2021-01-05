@@ -3,14 +3,20 @@ from yandex.items import ReviewsItem
 
 
 class SegodnyaSpider(scrapy.Spider):
-    name = 'segodnya'
+    name = 'review'
     allowed_domains = ['yandex.by']
-    start_urls = ['https://yandex.by/maps/org/segodnya/229371280912/reviews/']
+    start_urls = [
+        'https://yandex.by/maps/org/segodnya/229371280912/reviews/',
+        'http://yandex.by/maps/org/vitalyur/27954087090/reviews/',
+        'http://yandex.by/maps/org/tts_dana_mall/23881345245/reviews/',
+        'http://yandex.by/maps/org/sosedi/1042256439/reviews/',
+    ]
 
     def parse(self, response, **kwargs):
         count_reviews = len(response.xpath("//div[@class='business-review-view__info']").extract())
         counter = [i for i in range(count_reviews)]
         item = ReviewsItem()
+
         for review_number in counter:
             item["body"] = response.xpath("//div[@itemprop='reviewBody']//text()").extract()[review_number]
             item["author"] = response.xpath("//span[@itemprop='name']/text()").extract()[review_number]
